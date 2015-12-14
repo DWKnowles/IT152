@@ -68,7 +68,8 @@ public class Survey {
     
     ++this.numR; // pull numR with "this" and increment so numR matches the 
                  // number of respondentIds.
-    return ++(this.respondentId); // return and increment passed respondentId so
+    this.respondentId = this.numR;
+    return this.numR; // return and increment passed respondentId so
     // respondentId starts at 1 as desired.
   }
   // week 2
@@ -135,7 +136,7 @@ public class Survey {
    //Pass the row, column, and response variables to the answerArray
    void logResponse(int row, int column, int response){
        answerArray[row][column] = response;
-     }
+   }
 //week 3
    int topRatedQuestion(){
       // Declare variables needed   
@@ -208,13 +209,22 @@ public class Survey {
    }
    void presentQuestion(int questNum){
       System.out.println(this.questionArray[questNum - 1]);
-      this.logResponse(this.respondentId - 1, questNum - 1, scan.nextInt()); 
+      int response;
+      while(true){
+         response = scan.nextInt();
+         if ((response > 0) && (response < 6)){
+            break;
+         }
+         System.out.println("Response needs to be between 1-5.");
+      }
+      this.logResponse( respondentId - 1, questNum - 1, response);
    }
 
    void presentQuestion(int questNum, int respondentID){
       System.out.print("Respondent " + respondentID + ", please respond to the following survey question: ");
-      System.out.println( this.questionArray[questNum - 1] );
-      this.logResponse( respondentID - 1, questNum - 1, scan.nextInt());
+      this.respondentId = respondentID;
+      this.presentQuestion(questNum);
+   
    }
 
 }
