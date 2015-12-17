@@ -34,12 +34,14 @@ public class SurveyConductor {
       for(int respondent = 0; respondent < numRespondents; ++respondent){
          this.mySurvey.generateRespondentId();
             System.out.print("Enter Survey Title: ");
-            this.mySurvey.questionArray[respondent] = scanLine.nextLine();
+            this.mySurvey.questionArray[respondent] = scanLine.nextLine(); 
+// want to add question # after user inputs title
             System.out.println("");
           
          for(int question = 1; question <= this.mySurvey.getNumQuestions(); ++question){
             this.mySurvey.presentQuestion(question);
          }
+         respondent=respondent; // I tried to reset users input for survey title 
          System.out.println("Next Survey");//print to show when next survey starts
       }
    }

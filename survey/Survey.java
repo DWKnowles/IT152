@@ -127,7 +127,7 @@ public class Survey {
          for(int question = 0; question < numQ; ++question){
             // add 1 so questions start at #1 instead of 0.
             // Put the question + 1 in () so it reads 1 instead of 01
-            System.out.println("Enter Question " + (question + 1)+"s name");
+            System.out.println("Enter your Question for #" + (question + 1));
             questionArray[question] = scanLine.nextLine(); //scanline used to get everything on the line
          }
       System.out.println("");   
