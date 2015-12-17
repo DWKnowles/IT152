@@ -28,7 +28,7 @@ public class Survey {
    
   // creating a parallel array to have the questions numbered to match the  
   // multidimensional answer array.
-  private String questionArray[]= new String[numQ]; 
+  String questionArray[]= new String[numQ]; 
   private int answerArray[][]= new int[maxR][numQ];
    
   // survey constructor
@@ -127,7 +127,7 @@ public class Survey {
          for(int question = 0; question < numQ; ++question){
             // add 1 so questions start at #1 instead of 0.
             // Put the question + 1 in () so it reads 1 instead of 01
-            System.out.println("Enter Question Number " + (question + 1));
+            System.out.println("Enter Question " + (question + 1)+"s name");
             questionArray[question] = scanLine.nextLine(); //scanline used to get everything on the line
          }
       System.out.println("");   

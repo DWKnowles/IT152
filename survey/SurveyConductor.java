@@ -5,6 +5,8 @@
  */
 package it152.survey;
 
+import static it152.survey.Survey.scanLine;
+
 /**
  *
  * @author Dale
@@ -20,7 +22,7 @@ public class SurveyConductor {
       userSurvey.displaySurveyResults(); // calls method to display results of 
       // survey
    }
-   
+     
    public SurveyConductor(Survey s){ // survey constructor "instructions" for the 
       //object      
       this.mySurvey = s; // assign variable to mySurvey method
@@ -28,8 +30,13 @@ public class SurveyConductor {
    
    //Create method to conduct survey and loop responses to the questions.
    public void coduct(int numRespondents){
+      
       for(int respondent = 0; respondent < numRespondents; ++respondent){
          this.mySurvey.generateRespondentId();
+            System.out.print("Enter Survey Title: ");
+            this.mySurvey.questionArray[respondent] = scanLine.nextLine();
+            System.out.println("");
+          
          for(int question = 1; question <= this.mySurvey.getNumQuestions(); ++question){
             this.mySurvey.presentQuestion(question);
          }
