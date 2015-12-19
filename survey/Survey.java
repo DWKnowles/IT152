@@ -46,9 +46,7 @@ public class Survey {
     
     // prints  
     System.out.println("Survey title = \"" + surveyTitle + "\"");
-    
-    // print label of Respondent ID then the respodentId variable
-    System.out.println("Respondent ID = " + respondentId);
+    System.out.println("");
   }
   // Here are getters so if the next user needs to find what the values of numQ and numR.
   // create getNumQuestions variable to allow future users to find out how many questions 
@@ -77,7 +75,7 @@ public class Survey {
   void displaySurveyResults(){
     
     System.out.println(this.surveyTitle + " Survey Results: "); // pull survey
-                 // title with "this" and add test to make the results title.
+    // title with "this" and add test to make the results title.
     System.out.println(""); // print space so there is a blank line after title. 
 
     //loop that starts on row 0 and prints each column.
@@ -85,8 +83,8 @@ public class Survey {
     for(int col = 0; col < this.numQ; ++col){
       System.out.format("%4s", "Q" + new Integer(col+1).toString() );
       /* print out formated line with a max of 4 spaces in a string. Then I 
-      * converted the col variable to a string so I could add the "Q" to the
-      * column number */
+       * converted the col variable to a string so I could add the "Q" to the
+       * column number */
     }
     System.out.println(""); // print a blank line so it is less bunched up.
      
@@ -104,127 +102,127 @@ public class Survey {
     System.out.println(""); //Adds a blank line to add space after loop results
   }
   // creature displayQuestionStats method with questNum parameter for use in test.
-   void displayQuestionStats(int questNum){
-      // print title of results with updating question numbers. 
-      System.out.println(this.surveyTitle + " Question " + questNum + " Results ");
-      System.out.println(""); // add blank space after title prints
+  void displayQuestionStats(int questNum){
+    // print title of results with updating question numbers. 
+    System.out.println(this.surveyTitle + " Question " + questNum + " Results ");
+    System.out.println(""); // add blank space after title prints
        
-      //Prints out the questions of the first column
-      for(int respondent = 1; respondent <= this.numR; ++respondent){
-        /*print questNum-1 because each question is actually 1 less because the 
-         *program starts at 0 and goes to 9 to make a total of 10 questions. So if 
-         *you want answer 10, you have to pull number 9 which is the last answer.*/
-         System.out.println("Respondent " + respondent + ": " + this.answerArray[respondent-1][questNum-1] + " ");
-      }
+    //Prints out the questions of the first column
+    for(int respondent = 1; respondent <= this.numR; ++respondent){
+      /*print questNum-1 because each question is actually 1 less because the 
+       *program starts at 0 and goes to 9 to make a total of 10 questions. So if 
+       *you want answer 10, you have to pull number 9 which is the last answer.*/
+      System.out.println("Respondent " + respondent + ": " + this.answerArray[respondent-1][questNum-1] + " ");
+    }
     System.out.println(""); //Adds a blank line to add space after loop results
   }
    
-   void enterQuestions(){
-       //ask user to enter survey questions until it reaches the index # of numQ.
-       //Use the scanner to take the input from the user for each question. 
-       System.out.println("Enter Survey Questions: ");
+  void enterQuestions(){
+    //ask user to enter survey questions until it reaches the index # of numQ.
+    //Use the scanner to take the input from the user for each question. 
+    System.out.println("Enter Survey Questions: ");
        
-         for(int question = 0; question < numQ; ++question){
-            // add 1 so questions start at #1 instead of 0.
-            // Put the question + 1 in () so it reads 1 instead of 01
-            System.out.println("Enter your Question for #" + (question + 1));
-            questionArray[question] = scanLine.nextLine(); //scanline used to get everything on the line
-         }
-      System.out.println("");   
-   }
+    for(int question = 0; question < numQ; ++question){
+      // add 1 so questions start at #1 instead of 0.
+      // Put the question + 1 in () so it reads 1 instead of 01
+      System.out.println("Enter your Question for #" + (question + 1));
+      questionArray[question] = scanLine.nextLine(); //scanline used to get everything on the line
+    }
+    System.out.println("");   
+  }
    
-   //Pass the row, column, and response variables to the answerArray
-   void logResponse(int row, int column, int response){
-       answerArray[row][column] = response;
-   }
+  //Pass the row, column, and response variables to the answerArray
+  void logResponse(int row, int column, int response){
+    answerArray[row][column] = response;
+  }
 //week 3
-   int topRatedQuestion(){
-      // Declare variables needed   
-      int tempTotal = 0;
-      int hiTotal = Integer.MIN_VALUE;
-      int questNum = 10;
+  int topRatedQuestion(){
+    // Declare variables needed   
+    int tempTotal = 0;
+    int hiTotal = Integer.MIN_VALUE;
+    int questNum = 10;
    
-      for (int column = 0; column < numQ; ++column){
-         for (int row = 0; row < numR; ++row){ //this may be maxR
+    for (int column = 0; column < numQ; ++column){
+      for (int row = 0; row < numR; ++row){ //this may be maxR
       
-            // tempTotal is 0 then set that equal to itself so it translates into
-            // tempTotal = 0 + the values input into the answerArray.
-            tempTotal = tempTotal + this.answerArray[row][column]; // Reminder:
-                               // to ALWAYS keey array values in original order.
-         }      
+        // tempTotal is 0 then set that equal to itself so it translates into
+        // tempTotal = 0 + the values input into the answerArray.
+        tempTotal = tempTotal + this.answerArray[row][column]; // Reminder:
+        // to ALWAYS keey array values in original order.
+      }      
       
-         if (tempTotal >= hiTotal){ /* This checks to see if tempTotal is greater 
+      if (tempTotal >= hiTotal){ /* This checks to see if tempTotal is greater 
                                   * then hiTotal, if it is true then hiTotal is 
                                   * set to tempTotal and questNum is set to colum
                                   * minus 1 to account for the column starting at 
                                   * zero */
          
-            hiTotal = tempTotal;
-            questNum = column; 
+        hiTotal = tempTotal;
+        questNum = column; 
       
-         }
-      
-         tempTotal=0;  // Used to reset the loop after inner "for" loop reaches the  
-                       // end condition.
       }
+      
+      tempTotal=0;  // Used to reset the loop after inner "for" loop reaches the  
+      // end condition.
+    }
        
-      return questNum +1; // return column/questNum. 
+    return questNum +1; // return column/questNum. 
    
-   }  
+  }  
 
-   int lowRatedQuestion(){
-      //declare variables
-      int tempTotal = 0;
-      int lowTotal = Integer.MAX_VALUE; /* set to a number that all results must
-                                         * less than or equal to 
-                                         */
-      int questIndex = this.numQ;       /* set to a number outside the range 
-                                         * of question indices 
-                                         */
+  int lowRatedQuestion(){
+    //declare variables
+    int tempTotal = 0;
+    int lowTotal = Integer.MAX_VALUE; /* set to a number that all results must
+                                       * less than or equal to 
+                                       */
+    int questIndex = this.numQ;       /* set to a number outside the range 
+                                       * of question indices 
+                                       */
    
-      for (int column = 0; column < numQ; ++column){
-         for (int row = 0; row < numR; ++row){
+    for (int column = 0; column < numQ; ++column){
+      for (int row = 0; row < numR; ++row){
          
-            // tempTotal is 0 then set that equal to itself so it translates into
-            // tempTotal = 0 + the values input into the answerArray.
-            tempTotal = tempTotal + this.answerArray[row][column]; 
-         }
+        // tempTotal is 0 then set that equal to itself so it translates into
+        // tempTotal = 0 + the values input into the answerArray.
+        tempTotal = tempTotal + this.answerArray[row][column]; 
+      }
       
-         if (tempTotal <= lowTotal){ /* This checks to see if tempTotal is greater 
-                                 * then hiTotal, if it is true then hiTotal is 
-                                 * set to tempTotal and questIndex is set to colum
-                                 * minus 1 to account for the column starting at 
-                                 * zero */
+      if (tempTotal <= lowTotal){ /* This checks to see if tempTotal is greater 
+                                   * then hiTotal, if it is true then hiTotal is 
+                                   * set to tempTotal and questIndex is set to colum
+                                   * minus 1 to account for the column starting at 
+                                   * zero */
          
-            lowTotal = tempTotal;
-            questIndex = column;
+        lowTotal = tempTotal;
+        questIndex = column;
    
-         }
+      }
       
-         tempTotal=0; // Used to reset the loop after inner "for" loop reaches the  
+      tempTotal=0; // Used to reset the loop after inner "for" loop reaches the  
                    // end condition.
-      }
+    }
    
-      return questIndex + 1; // return the question number +1 because it starts at zero.
-   }
-   void presentQuestion(int questNum){
-      System.out.println(this.questionArray[questNum - 1]);
-      int response;
-      while(true){
-         response = scan.nextInt();
-         if ((response > 0) && (response < 6)){
-            break;
-         }
-         System.out.println("Response needs to be between 1-5.");
+    return questIndex + 1; // return the question number +1 because it starts at zero.
+  }
+  void presentQuestion(int questNum){
+    System.out.println(this.questionArray[questNum - 1]);
+    int response;
+    while(true){
+      response = scan.nextInt();
+      if ((response > 0) && (response < 6)){
+        break;
       }
-      this.logResponse( respondentId - 1, questNum - 1, response);
-   }
+      System.out.println("Response needs to be between 1-5.");
+    }
+    this.logResponse( respondentId - 1, questNum - 1, response);
+  }
 
-   void presentQuestion(int questNum, int respondentID){
-      System.out.print("Respondent " + respondentID + ", please respond to the following survey question: ");
-      this.respondentId = respondentID;
-      this.presentQuestion(questNum);
+  void presentQuestion(int questNum, int respondentID){
+    System.out.print("Respondent " + respondentID + ", please respond to the following survey question: ");
+    this.respondentId = respondentID;
+    this.presentQuestion(questNum);
    
-   }
+  }
 
 }
